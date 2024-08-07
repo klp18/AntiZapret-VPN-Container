@@ -52,7 +52,7 @@ sudo lxc init antizapret-vpn-img antizapret-vpn
 #
 # Открываем порт только для UDP, TCP не используем
 sudo lxc config device add antizapret-vpn proxy_443_udp proxy listen=udp:[::]:443 connect=udp:127.0.0.1:443
-# sudo lxc config device add antizapret-vpn proxy_1194 proxy listen=tcp:[::]:1194 connect=tcp:127.0.0.1:1194
+sudo lxc config device add antizapret-vpn proxy_1194 proxy listen=tcp:[::]:1194 connect=tcp:127.0.0.1:1194
 #
 # Запускаем контейнер и ждем пока сгенерируется файл подключения ovpn
 sudo lxc start antizapret-vpn && sleep 10
@@ -68,11 +68,11 @@ sudo lxc exec antizapret-vpn -- sed -i '/^[@#]/d;/^[[:space:]]*$/d;s/comp-lzo/po
 cipher AES-128-GCM/g' /root/easy-rsa-ipsec/CLIENT_KEY/antizapret-client-udp.ovpn
 #
 # Отключаем OpenVpn TCP
-sudo lxc exec antizapret-vpn -- systemctl disable openvpn-server@antizapret-tcp
+# sudo lxc exec antizapret-vpn -- systemctl disable openvpn-server@antizapret-tcp
 #
 # Получаем файл подключения только по UDP, TCP не используем
 sudo lxc file pull antizapret-vpn/root/easy-rsa-ipsec/CLIENT_KEY/antizapret-client-udp.ovpn antizapret-client-udp.ovpn
-# sudo lxc file pull antizapret-vpn/root/easy-rsa-ipsec/CLIENT_KEY/antizapret-client-tcp.ovpn antizapret-client-tcp.ovpn
+sudo lxc file pull antizapret-vpn/root/easy-rsa-ipsec/CLIENT_KEY/antizapret-client-tcp.ovpn antizapret-client-tcp.ovpn
 #
 # Ставим патч для устройств Apple https://ntc.party/t/ios-macos-openvpn/4468
 sudo lxc exec antizapret-vpn -- apt update && sudo apt upgrade -y
