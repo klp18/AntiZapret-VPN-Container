@@ -92,6 +92,13 @@ sudo lxc exec antizapret-vpn -- mv -f /root/antizapret-process.sh /root/antizapr
 # Добавляем свои адреса в исключения и адреса из https://bitbucket.org/anticensority/russian-unlisted-blocks/src/master/readme.txt
 sudo lxc exec antizapret-vpn -- sh -c "echo 'youtube.com
 googlevideo.com
+ytimg.com
+ggpht.com
+googleapis.com
+gstatic.com
+gvt1.com
+gvt2.com
+gvt3.com
 digitalocean.com
 strava.com
 adguard-vpn.com
@@ -120,7 +127,9 @@ linktr.ee
 is.gd
 anicult.org
 12putinu.net
-padlet.com' > /root/antizapret/config/include-hosts-custom.txt"
+padlet.com
+proxy6.net
+hetzner.com' > /root/antizapret/config/include-hosts-custom.txt"
 #
 # Удаляем исключения из исключений
 sudo lxc exec antizapret-vpn -- sed -i "/\b\(youtube\|youtu\|ytimg\|ggpht\|googleusercontent\|cloudfront\|ftcdn\)\b/d" /root/antizapret/config/exclude-hosts-dist.txt
