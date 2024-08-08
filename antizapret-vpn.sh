@@ -124,7 +124,6 @@ ua
 is.gd
 1plus1tv.ru
 linktr.ee
-is.gd
 anicult.org
 12putinu.net
 padlet.com
@@ -141,7 +140,7 @@ sudo lxc exec antizapret-vpn -- sed -i "/\b\(googleusercontent\|cloudfront\|devi
 # policy.add(policy.all(policy.FORWARD({'94.140.15.15'})))' >> /etc/knot-resolver/kresd.conf"
 #
 # Обновляем списки антизапрета
-sudo lxc exec antizapret-vpn -- sh -c /root/antizapret/doall.sh
+sudo lxc exec antizapret-vpn -- /root/antizapret/doall.sh
 sudo lxc exec antizapret-vpn -- sh -c "echo 'cache.clear()' | socat - /run/knot-resolver/control/1"
 #
 # Перезапускаем контейнер антизапрета
